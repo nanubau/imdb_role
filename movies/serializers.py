@@ -46,7 +46,9 @@ class MovieSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         popularity_99 = data.get('99popularity')
         # validation for popularity_99
-        if not popularity_99 and not isinstance(popularity_99,float):
+        # print isinstance(popularity_99,float)
+        
+        if  not (popularity_99 and isinstance(popularity_99,float)):
             raise exceptions.ValidationError({
                                 '99popularity_errors': ['This field is required and should be float .']
                                 })
@@ -59,7 +61,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
         director = data.get('director')
         # validation for director
-        if not director and not isinstance(director,str):
+        if not (director and isinstance(director,unicode)):
             raise exceptions.ValidationError({
                                 'director_errors': ['This field is required and should be string.']
                                 })
@@ -68,7 +70,8 @@ class MovieSerializer(serializers.ModelSerializer):
 
         imdb_score = data.get('imdb_score')
         # validation for imdb_score
-        if not imdb_score and not isinstance(imdb_score,float):
+        
+        if not (imdb_score and isinstance(imdb_score,float)):
             raise exceptions.ValidationError({
                                 'imdb_score_errors': ['This field is required and should be float.']
                                 })
@@ -81,7 +84,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
         name = data.get('name')
         # validation for director
-        if not name and not isinstance(name,str):
+        if not (name and isinstance(name,unicode)):
             raise exceptions.ValidationError({
                                 'name': ['This field is required and should be string.']
                                 })
@@ -102,9 +105,12 @@ class MovieSerializer(serializers.ModelSerializer):
                                )
         new_movie.save()
         # add genre
-        if "genre" in validated_data and (not isinstance(validated_data["genre"],list)): 
+        # print genre
+        # print validated_data        
+        # print isinstance(validated_data["genre"],list)
+        if "genre" in validated_data and isinstance(validated_data["genre"],list): 
             for genre in validated_data['genre']:
-                print 'the genre is',genre
+                # print 'the genre is',genre
                 exists, obj = Genre.name_exists(genre)
                 # print obj
                 # print exists
@@ -125,7 +131,9 @@ class MovieSerializer(serializers.ModelSerializer):
                                                  instance.imdb_score)
         instance.director = validated_data.get('director', instance.director)
         # update genre
-        if "genre" in validated_data (not isinstance(validated_data["genre"],list)): 
+        # print genre
+        # print validated_data
+        if "genre" in validated_data and isinstance(validated_data["genre"],list): 
             instance.genre = []
             for genre in validated_data['genre']:
                 # print genre

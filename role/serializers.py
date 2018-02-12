@@ -110,7 +110,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email_id', 'role')
+        fields = ('email_id', 'role', 'id')
 
 class RolePermissionSerializer(serializers.ModelSerializer):
 

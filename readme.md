@@ -53,3 +53,4 @@ ROLE-PERMISSION
 
 
 
+** Note role on movie is not based on hierarchy on Admin > Moderator > Viewer because a moderator may not have access to a movie which viewer has **

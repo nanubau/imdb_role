@@ -15,17 +15,16 @@ class PermissionSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         name = data.get('name')
         if not name or '':
-            raise exceptions.ValidationError({
-                                'name': 'name is a required field and cannot be empty'
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"name_errors": [
+                "name is a required field and cannot be empty"]}})            
+
         # validation for slug
         slug = name.lower().replace('-','_')
         slug = slug.replace(' ','_')
         exists, obj = Permission.slug_exists(slug)
         if exists:
-            raise exceptions.ValidationError({
-                                'slug': ' %s Already exists'%slug
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"slug_errors": [
+                ' %s Already exists'%slug]}})            
         return {
                 'name': data['name']
               }

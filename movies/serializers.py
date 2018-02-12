@@ -49,8 +49,7 @@ class MovieSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         popularity_99 = data.get('99popularity')
         # validation for popularity_99
-        # isinstance(popularity_99,float)
-        if not popularity_99 and type(popularity_99)!= float :
+        if not popularity_99 and not isinstance(popularity_99,float):
             raise exceptions.ValidationError({
                                 '99popularity_errors': ['This field is required and should be float .']
                                 })
@@ -63,7 +62,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
         director = data.get('director')
         # validation for director
-        if not director and  type(director)!= str :
+        if not director and not isinstance(director,str):
             raise exceptions.ValidationError({
                                 'director_errors': ['This field is required and should be string.']
                                 })
@@ -72,7 +71,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
         imdb_score = data.get('imdb_score')
         # validation for imdb_score
-        if not imdb_score and type(imdb_score)!= float :
+        if not imdb_score and not isinstance(imdb_score,float):
             raise exceptions.ValidationError({
                                 'imdb_score_errors': ['This field is required and should be float.']
                                 })
@@ -85,7 +84,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
         name = data.get('name')
         # validation for director
-        if not name and type(name)!= str:
+        if not name and not isinstance(name,str):
             raise exceptions.ValidationError({
                                 'name': ['This field is required and should be string.']
                                 })

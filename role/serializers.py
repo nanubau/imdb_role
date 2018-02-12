@@ -47,17 +47,15 @@ class RoleSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         name = data.get('name')
         if not name or '':
-            raise exceptions.ValidationError({
-                                'name': 'name is a required field and cannot be empty'
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"name_errors": [
+                "name is a required field and cannot be empty"]}})            
         # validation for slug
         slug = name.lower().replace('-','_')
         slug = slug.replace(' ','_')
         exists, obj = Role.slug_exists(slug)
         if exists:
-            raise exceptions.ValidationError({
-                                'slug': ' %s Already exists'%slug
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"slug_errors": [
+                ' %s Already exists'%slug]}})            
         return {
                 'name': data['name']
               }
@@ -77,13 +75,13 @@ class UserSerializer(serializers.ModelSerializer):
         email_id = data.get('email_id')
         password = data.get('password')
         if not email_id or '':
-            raise exceptions.ValidationError({
-                                'email_id': 'email_id is a required field and cannot be empty'
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"email_id_errors": [
+                "email_id is a required field and cannot be empty"]}})            
+
         if not password or '':
-            raise exceptions.ValidationError({
-                                'password': 'password is a required field and cannot be empty'
-                                })
+            raise exceptions.ValidationError({"success": False,"error": {"password_errors": [
+                "password is a required field and cannot be empty"]}})            
+
         return {
                 'email_id': data['email_id'],
                 'password':data['password']

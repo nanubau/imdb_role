@@ -134,7 +134,9 @@ class MovieAPIView(BaseAPIView):
                     # except Exception as e:
                     #     Response({'error':e.message, 'success':False}, status=status.HTTP_400_BAD_REQUEST)
                     return Response({'data':serializer.data,'success':True}, status=status.HTTP_200_OK)
-        return Response({'error':serializer.errors, 'success':False}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error':{'unauthorized':["UNAUTHORIZED USER"]}, 'success':False}, status=status.HTTP_400_BAD_REQUEST)    
+        return Response({'error':{'movie':["NOT PRESENT"]}, 'success':False}, status=status.HTTP_400_BAD_REQUEST)
+
 
     @iam(permission = 'delete_movie')    
     def delete(self, request, auth, format=None, *args, **kwargs):

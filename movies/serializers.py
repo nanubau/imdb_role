@@ -36,9 +36,6 @@ class GenreSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     genre = GenreSerializer(many=True)
     # role = RoleSerializer(many=True)
-    class Meta:
-        model = Movie
-        fields = ('name', 'director', 'popularity_99', 'genre', 'imdb_score', 'id')
 
     def to_representation(self, instance):
         ret = super(MovieSerializer, self).to_representation(instance)
@@ -145,6 +142,10 @@ class MovieSerializer(serializers.ModelSerializer):
                             "slug_errors": ["There is a movie with same slug so choose  different name"
                                     ]})            
         return instance
+
+    class Meta:
+    model = Movie
+    fields = ('name', 'director', 'popularity_99', 'genre', 'imdb_score', 'id')
 
 class MovieRoleSerializer(serializers.ModelSerializer):
     # # role_id = serializers.PrimaryKeyRelatedField(queryset=Role.objects.all())

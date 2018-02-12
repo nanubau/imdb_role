@@ -142,10 +142,9 @@ class MovieSerializer(serializers.ModelSerializer):
                             "slug_errors": ["There is a movie with same slug so choose  different name"
                                     ]})            
         return instance
-
     class Meta:
-    model = Movie
-    fields = ('name', 'director', 'popularity_99', 'genre', 'imdb_score', 'id')
+        model = Movie
+        fields = ('name', 'director', 'popularity_99', 'genre', 'imdb_score', 'id')
 
 class MovieRoleSerializer(serializers.ModelSerializer):
     # # role_id = serializers.PrimaryKeyRelatedField(queryset=Role.objects.all())

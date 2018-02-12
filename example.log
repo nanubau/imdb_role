@@ -1,0 +1,6 @@
+DEBUG:root:This message should go to the log file
+INFO:__builtin__:Start reading database
+DEBUG:__builtin__:Records: {'john': 55, 'tom': 66}
+INFO:__builtin__:Updating records ...
+INFO:__builtin__:Finish updating records
+ERROR:From the Decorator file:NotAcceptableError:adadas

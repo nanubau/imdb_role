@@ -128,7 +128,7 @@ class MovieSerializer(serializers.ModelSerializer):
                                                  instance.imdb_score)
         instance.director = validated_data.get('director', instance.director)
         # update genre
-        if "genre" in validated_data: 
+        if "genre" in validated_data (not isinstance(validated_data["genre"],list)): 
             instance.genre = []
             for genre in validated_data['genre']:
                 # print genre

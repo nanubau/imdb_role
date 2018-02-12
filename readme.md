@@ -3,8 +3,8 @@ Testing Flow:
 2. Put the token as Session-Token in the header for accessing apis like 
 		
 		v1/movie,
-		v1/movie-role,
-		v1/user-role
+		v1/movie-role - admin can update roles on movie
+		v1/user-role - admin can update roles to as user
 
 
 
@@ -21,11 +21,10 @@ Implementation of movie having mutiple role is done by
 
 ENDPOINT Without requirement of token
 
-	v1/genre 
-	v1/permission
-	v1/role
-	v1/user
-	v1/role-permission 
+	v1/permission - list permission and CUD operation
+	v1/role - list roles with permission and CUD operation
+	v1/user - list all users will roles and permission, and and CUD operation
+	v1/role-permission - list role id and permission and and CUD operation
 
 Permission 
 

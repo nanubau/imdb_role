@@ -146,9 +146,13 @@ class MovieSerializer(serializers.ModelSerializer):
                         obj = serializer.save()
                         instance.genre.add(obj)
                     else:
-                        raise exceptions.ValidationError({
-                            "slug_errors": ["There is a movie with same slug so choose  different name"
-                                    ]})            
+                        raise exceptions.ValidationError({"success": False,
+                            "error": {
+                                "slug_errors": [
+                                    "There is a movie with same slug so choose  different name"
+                                    ]
+                            }
+                        })             
         return instance
     class Meta:
         model = Movie
